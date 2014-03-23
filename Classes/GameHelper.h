@@ -29,27 +29,29 @@ typedef std::pair<std::pair<int,int>, Status> Location;
 class GameHelper
 {
 public:
-    std::vector<Location> go(Status dir);
-    GameHelper();
-    
-private:
     const static int MAX_ROW = 9;
     const static int MAX_COL = 9;
-    
+
+    GameHelper();
+    std::vector<Location> go(Status dir);
+    bool load_map(Status** map_info, int high, int wide, const Location& now);
+    Status** get_map_info();
+
+private:
     enum Map_info
     {
         FREE,
         PASS_BY,
         OCC
     };
-    
+
     bool   direction_ok(Location now, Status dir);
     bool   validate(const Location& now);
     Status check_map_info();
     void   go_next(Location& now);
-    
+
     Location _current;
-    int _map_info[MAX_ROW][MAX_COL];
+    Status _map_info[MAX_ROW][MAX_COL];
     int _wide, _high;
     bool _is_connect;
 };
