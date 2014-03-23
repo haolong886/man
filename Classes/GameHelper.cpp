@@ -7,7 +7,7 @@ bool GameHelper:: load_map(Map_info** map_info, int hight, int wide, const Locat
     _high = hight;
     _wide = wide;
     for(int i = 0; i < _high; ++i) for(int j = 0; j < _wide; ++j)
-        _map_info[i][j] = *((Map_info *)map_info + _high * i + j);
+        _map_info[i][j] = *((Map_info *)map_info + _wide * i + j);
     return true;
 }
 
