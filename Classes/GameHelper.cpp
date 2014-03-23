@@ -1,5 +1,20 @@
 #include "GameHelper.h"
 
+bool GameHelper:: load_map(Status** map_info, int hight, int wide, const Location& now)
+{
+    _current.row = now.row;
+    _current.col = now.col;
+    _high = hight;
+    _wide = wide;
+    for(int i = 0; i < _high; ++i) for(int j = 0; j < _wide; ++j)
+        _map_info[i][j] = *((Status *)_map_info + _high * i + j);
+}
+
+Status** GameHelper:: get_map_info()
+{
+    return (Status **)_map_info;
+}
+
 GameHelper::GameHelper()
 {
     _current.row = 0;
@@ -11,6 +26,7 @@ GameHelper::GameHelper()
         _map_info[i][j] = FREE;
     _map_info[_current.row][_current.col] = PASS_BY;
 }
+
 std::vector<Location> GameHelper:: go(Status dir)
 {
     std::vector<Location> info_list;
