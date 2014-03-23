@@ -28,14 +28,7 @@ typedef std::pair<std::pair<int,int>, Status> Location;
 
 class GameHelper
 {
-public:
-    const static int MAX_ROW = 9;
-    const static int MAX_COL = 9;
 
-    GameHelper();
-    std::vector<Location> go(Status dir);
-    bool load_map(Status** map_info, int high, int wide, const Location& now);
-    Status** get_map_info();
 
 private:
     enum Map_info
@@ -45,15 +38,25 @@ private:
         OCC
     };
 
+    const static int MAX_ROW = 9;
+    const static int MAX_COL = 9;
+
     bool   direction_ok(Location now, Status dir);
     bool   validate(const Location& now);
     Status check_map_info();
     void   go_next(Location& now);
 
     Location _current;
-    Status _map_info[MAX_ROW][MAX_COL];
+    Map_info _map_info[MAX_ROW][MAX_COL];
     int _wide, _high;
     bool _is_connect;
+    
+public:
+    
+    GameHelper();
+    std::vector<Location> go(Status dir);
+    bool load_map(Map_info** map_info, int high, int wide, const Location& now);
+    Status** get_map_info();
 };
 
 #endif

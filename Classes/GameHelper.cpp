@@ -1,13 +1,14 @@
 #include "GameHelper.h"
 
-bool GameHelper:: load_map(Status** map_info, int hight, int wide, const Location& now)
+bool GameHelper:: load_map(Map_info** map_info, int hight, int wide, const Location& now)
 {
     _current.row = now.row;
     _current.col = now.col;
     _high = hight;
     _wide = wide;
     for(int i = 0; i < _high; ++i) for(int j = 0; j < _wide; ++j)
-        _map_info[i][j] = *((Status *)_map_info + _high * i + j);
+        _map_info[i][j] = *((Map_info *)map_info + _high * i + j);
+    return true;
 }
 
 Status** GameHelper:: get_map_info()
